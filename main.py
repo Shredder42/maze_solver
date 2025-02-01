@@ -3,19 +3,25 @@ from cell import Cell
 from maze import Maze
 
 def main():
-    win = Window(800, 600)
-    # win.draw_line(Line(Point(10,10), Point(20,20)), 'blue')
-    # win.draw_line(Line(Point(100,50), Point(200,125)), 'red')
-    # win.draw_line(Line(Point(50,100), Point(125,200)))
-    # win.draw_cell(Cell(200, 200, 300, 300))
-    # win.draw_cell(Cell(400, 400, 500, 500, has_left_wall=True, has_right_wall=False, has_top_wall=False))
-    # cell1 = Cell(win)
-    # cell1.draw(400, 400, 500, 500)
-    # cell2 = Cell(win)
-    # cell2.draw(500, 400, 600, 500)
-    # cell1.draw_move(cell2, undo=True)
-    # maze = Maze(0,0,30,40,20,20,win)
-    maze = Maze(10, 10, 3, 3, 20, 20, win, 42)
+    num_rows = 20
+    num_cols = 20
+    margin = 10
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = 20
+    cell_size_y = 20
+
+    win = Window(screen_x, screen_y)
+
+    maze = Maze(margin, margin, num_cols, num_rows, cell_size_x, cell_size_y, win)
+    print('maze created')
+
+    is_solvable = maze.solve()
+    if not is_solvable:
+        print('maze cannot be solved!')
+    else:
+        print('maze solved!')
+
     win.wait_for_close()
 
 
